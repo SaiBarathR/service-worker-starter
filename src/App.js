@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import { useSnackbar } from 'notistack';
 import './App.css';
+import { SWhandler } from './components/SWhandler';
+import { setCloseSnackBarRef, setSnackBarRef } from './components/NotiService';
+import { useEffect } from 'react';
 
 function App() {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  useEffect(() => {
+    setSnackBarRef(enqueueSnackbar);
+    setCloseSnackBarRef(closeSnackbar);
+  }, [enqueueSnackbar, closeSnackbar]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SWhandler />
     </div>
   );
 }
