@@ -60,13 +60,13 @@ export const registerServiceWorker = async () => {
         try {
             navigator.serviceWorker.register("./sw.js", { scope: "/", }).then((registration) => {
                 console.log("Service worker registered", registration);
+                localStorage.setItem('isServiceWorker', true);
                 showSuccessNotification('service worker registered');
                 if (registration.installing) {
                     console.log("Service worker installing");
                 } else if (registration.waiting) {
                     console.log("Service worker installed");
                 } else if (registration.active) {
-                    localStorage.setItem('isServiceWorker', true);
                     console.log("Service worker active");
                 }
             }).catch(error => console.log(error))
