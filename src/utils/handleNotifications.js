@@ -6,23 +6,24 @@ export function handleIncommingCallNotification() {
             console.log('Notifications permission is:', Notification.permission)
             if (result === "granted") {
                 navigator.serviceWorker.ready.then((registration) => {
-                    registration.showNotification('Sw Test', {
+                    const notificationConstraints = {
                         icon: `${process.env.PUBLIC_URL}/icons/ozonetel-logo.svg`,
-                        body: 'Test Incomming Call',
+                        body: 'Test Notification',
                         requireInteraction: true,
-                        actions: [{ title: "Answer", action: 'answer' },
-                        { title: "Decline", action: 'decline' }],
-                    });
+                        actions: [{ title: "Button-1", action: 'button1' },
+                        { title: "Button-2", action: 'button2' }],
+                    }
+                    registration.showNotification('Sw Test', notificationConstraints);
                     console.log('Sent Notification"')
                     showSuccessNotification("Sent Notification")
                 });
                 navigator.serviceWorker.onmessage = (msg) => {
-                    if (msg.data.action === 'answer') {
-                        showSuccessNotification('Answer');
-                        console.log('Answer');
-                    } else if (msg.data.action === 'decline') {
-                        showSuccessNotification('Decline');
-                        console.log('Decline');
+                    if (msg.data.action === 'button1') {
+                        showSuccessNotification('Pressed Button-1');
+                        console.log('Pressed Button-1');
+                    } else if (msg.data.action === 'button2') {
+                        showSuccessNotification('Pressed Button-2');
+                        console.log('Pressed Button-2');
                     }
                 }
             }

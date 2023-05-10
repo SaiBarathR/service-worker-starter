@@ -16,7 +16,7 @@ self.onnotificationclick = (event) => {
       clients.matchAll({ type: 'window' }).then(function (browserTabList) {
         return browserTabList.length ? browserTabList[0] : Promise.reject("No clients");
       }).then((client) => {
-        if (event.action === 'answer' || event.action === 'decline') {
+        if (event.action === 'button1' || event.action === 'button2') {
           client.postMessage({ action: event.action });
         }
       }).catch(e => console.log(`action selectoin failed  ${e}`))
