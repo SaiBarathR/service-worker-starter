@@ -7,7 +7,7 @@ export function handleIncommingCallNotification() {
             if (result === "granted") {
                 navigator.serviceWorker.ready.then((registration) => {
                     const notificationConstraints = {
-                        icon: `${process.env.PUBLIC_URL}/icons/ozonetel-logo.svg`,
+                        icon: `${process.env.PUBLIC_URL}/icons/peace.jpg`,
                         body: 'Test Notification',
                         requireInteraction: true,
                         actions: [{ title: "Button-1", action: 'button1' },
