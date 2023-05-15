@@ -15,9 +15,14 @@ export function SWhandler() {
     }, [])
 
     return (
-        <div style={{ padding: "30px", marginTop: "200px", display: 'flex', flexDirection: 'column', alignContent: "center", alignItems: "center", gap: '20px' }}>
-            <Typography sx={{ textOverflow: 'ellipsis' }}>Testing Service Worker and muilti platform push notification</Typography>
-            {['Push Notification', 'Download Logs', 'Reset Logs'].map((buttonRenderer) => <Button key={buttonRenderer} variant="contained" endIcon={buttonRenderer === 'Push Notification' ? <SendIcon /> : buttonRenderer === 'Download Logs' ? <DownloadIcon /> : <RestartAltIcon />} onClick={buttonRenderer === 'Push Notification' ? () => { isServiceWorker() ? handleIncommingCallNotification() : showErrorNotification('SW not available') } : () => { buttonRenderer === 'Download Logs' ? exportData() : resetLogs() }}>
+        <div style={{ display: 'flex', padding: "20px", flexDirection: 'column', alignContent: "center", alignItems: "center", top: "37%", gap: '20px', position: "absolute", zIndex: "10000", width: "100%", }}>
+            <Typography sx={{ textOverflow: 'ellipsis', color: "#FFFF", flexDirection: 'column', alignContent: "center", }}>Testing Service Worker and muilti platform notification</Typography>
+            {['Push Notification', 'Download Logs', 'Reset Logs'].map((buttonRenderer) => <Button
+                key={buttonRenderer}
+                variant="contained"
+                endIcon={buttonRenderer === 'Push Notification' ? <SendIcon /> : buttonRenderer === 'Download Logs' ? <DownloadIcon /> : <RestartAltIcon />}
+                onClick={buttonRenderer === 'Push Notification' ? () => { isServiceWorker() ? handleIncommingCallNotification() : showErrorNotification('SW not available') } : () => { buttonRenderer === 'Download Logs' ? exportData() : resetLogs() }}
+            >
                 {buttonRenderer}
             </Button>
             )}

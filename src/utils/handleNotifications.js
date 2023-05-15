@@ -10,8 +10,8 @@ export function handleIncommingCallNotification() {
                         icon: `${process.env.PUBLIC_URL}/icons/peace.jpg`,
                         body: 'Test Notification',
                         requireInteraction: true,
-                        actions: [{ title: "Button-1", action: 'button1' },
-                        { title: "Button-2", action: 'button2' }],
+                        data: "hey",
+                        actions: []
                     }
                     registration.showNotification('Sw Test', notificationConstraints);
                     console.log('Sent Notification"')
@@ -81,3 +81,20 @@ export const registerServiceWorker = async () => {
         localStorage.setItem('isServiceWorker', false);
     }
 };
+
+export async function unRegisterServiceWorker() {
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+            .register("/sw.js", { scope: "/" })
+            .then((registration) => {
+                console.log("Registration succeeded.");
+                registration.unregister().then((boolean) => {
+                    console.log(boolean ? 'unregistered all service worker' : "unable to unregister service workers")
+                });
+            })
+            .catch((error) => {
+                console.error(`Registration failed with ${error}`);
+            });
+    }
+}
+

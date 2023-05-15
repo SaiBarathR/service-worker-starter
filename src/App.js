@@ -11,9 +11,7 @@ function App() {
     setCloseSnackBarRef(closeSnackbar);
   }, [enqueueSnackbar, closeSnackbar]);
   return (
-    <div className="App">
-      <SWhandler />
-    </div>
+    <SWhandler />
   );
 }
 
