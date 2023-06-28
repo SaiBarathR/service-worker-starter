@@ -28,6 +28,7 @@ export function handleIncommingCallNotification() {
                 }
             }
         });
+        Notification.permission === "default" && showErrorNotification('Notifications permission is set to default. Please change permission to allow notifications');
     } else {
         console.log('Notifications permission denied');
         showErrorNotification('Notifications permission denied');
