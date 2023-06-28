@@ -2,7 +2,7 @@ self.onnotificationclick = (event) => {
   console.log('[Service Worker] Notification click Received.', event);
   event.notification.close();
   event.waitUntil(
-    clients.matchAll({ type: "window", includeUncontrolled: true }).then((browserTabList) => {
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((browserTabList) => { //open the browser tab on notification click
       console.log(clients, browserTabList, "list of tabs in clients");
       if (browserTabList.length > 1) {
         browserTabList.forEach((client) => {
@@ -16,8 +16,8 @@ self.onnotificationclick = (event) => {
       clients.matchAll({ type: 'window' }).then(function (browserTabList) {
         return browserTabList.length ? browserTabList[0] : Promise.reject("No clients");
       }).then((client) => {
-        if (event.action === 'button1' || event.action === 'button2') {
-          client.postMessage({ action: event.action });
+        if (event.action === 'button1' || event.action === 'button2') { 
+          client.postMessage({ action: event.action }); //trigger notification button clicks
         }
       }).catch(e => console.log(`action selectoin failed  ${e}`))
     })

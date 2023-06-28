@@ -8,7 +8,7 @@ export function handleIncommingCallNotification() {
                 navigator.serviceWorker.ready.then((registration) => {
                     const notificationConstraints = {
                         icon: `${process.env.PUBLIC_URL}/icons/peace.jpg`,
-                        body: 'Test Notification',
+                        body: 'Sample Notification',
                         requireInteraction: true,
                         data: "hey",
                         actions: []
@@ -17,7 +17,7 @@ export function handleIncommingCallNotification() {
                     console.log('Sent Notification"')
                     showSuccessNotification("Sent Notification")
                 });
-                navigator.serviceWorker.onmessage = (msg) => {
+                navigator.serviceWorker.onmessage = (msg) => { // listens for button clicks
                     if (msg.data.action === 'button1') {
                         showSuccessNotification('Pressed Button-1');
                         console.log('Pressed Button-1');
@@ -59,7 +59,7 @@ export function isServiceWorker() {
 export const registerServiceWorker = async () => {
     if ("serviceWorker" in navigator) {
         try {
-            navigator.serviceWorker.register("./sw.js", { scope: "/", }).then((registration) => {
+            navigator.serviceWorker.register("./sw.js", { scope: "/", }).then((registration) => { //set your service worker scope according to your production environment
                 console.log("Service worker registered", registration);
                 localStorage.setItem('isServiceWorker', true);
                 showSuccessNotification('service worker registered');

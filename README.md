@@ -1,5 +1,7 @@
 Live Link: https://sw-provider.netlify.app/
 
+Demo project to showcase basic functionality of notifications using service workers for all type of browsers and devices.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
